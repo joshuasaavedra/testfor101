@@ -1,0 +1,189 @@
+/* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Kalnia', sans-serif;
+}
+
+/* Set background image */
+body {
+    background-image: url('images/fitness-bg.jpeg'); /* Ensure background image is consistent */
+    background-size: cover;
+    background-position: center;
+    font-family: 'Kalnia', sans-serif;
+    color: white;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Glasscard styling */
+/* Glasscard styling */
+.card {
+    background: rgba(0, 0, 0, 0.5); /* Dark transparent background */
+    border-radius: 15px; /* Rounded corners */
+    padding: 50px; /* Increase padding for more internal space */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* Shadow to enhance the effect */
+    color: white;
+    max-width: 600px; /* Increase max-width for larger card */
+    width: 100%; /* Ensure it takes up the full width within the max-width limit */
+    text-align: center;
+    margin: 50px 0; /* Adjust spacing to suit your design */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Glasscard hover effect */
+.card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+
+/* Navbar styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
+    z-index: 1000;
+}
+
+.logo-container h1 {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Adding text shadow for visibility */
+}
+
+/* Navbar links */
+.nav-links {
+    display: flex;
+    list-style-type: none;
+    margin-left: auto;
+}
+
+.nav-links li {
+    margin: 0 20px;
+}
+
+.nav-links a {
+    color: rgb(105, 104, 104);
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ffffff; /* Change color on hover */
+}
+
+/* Active link styling */
+.nav-links a.active {
+    color: #ffffff; /* Highlight color for active page */
+    font-weight: bold; /* Optionally, make the active page bold */
+}
+
+/* Hamburger Icon */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 30px;
+    height: 4px;
+    background-color: white;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+/* Main content container */
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    color: white;
+    margin-top: 80px; /* Ensure the content isn't covered by the navbar */
+}
+
+/* Button Styling */
+button {
+    padding: 14px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    background-color: #000000;
+    color: white;
+    border-radius: 10px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #383737; /* Darker shade for hover */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* Navbar */
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px; /* Smaller padding for mobile */
+    }
+
+    .logo-container h1 {
+        font-size: 2rem; /* Reduce the size of the logo */
+        margin-bottom: 10px;
+    }
+
+    /* Show hamburger icon on mobile */
+    .hamburger {
+        display: flex; /* Show hamburger menu */
+    }
+
+    .nav-links {
+        display: none; /* Hide the nav-links initially */
+        width: 100%;
+        padding-left: 0;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-links.active {
+        display: block; /* Show the nav-links when active */
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+        padding: 15px;
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+
+    /* Button */
+    button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
+
+/* For additional styling and hover effect */
+.nav-links a.active {
+    color: #ffffff; /* A brighter highlight color for active links */
+}

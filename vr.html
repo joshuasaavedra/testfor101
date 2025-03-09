@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR Fitness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kalnia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <h1>S&S</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" id="home-link">Home</a></li>
+            <li><a href="journal.html" id="journal-link">Journal</a></li>
+            <li><a href="vr.html" id="vr-link">VR Fitness</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main content container -->
+    <div class="content">
+        <!-- Glass Card -->
+        <div class="card">
+            <!-- Header for the VR page -->
+            <div class="header">
+                <h2>Take a virtual tour of the gym, try out different workouts, and see how we can help you achieve your fitness goals!</h2>
+            </div>
+
+            <!-- VR Section -->
+            <div class="vr-section">
+                <div class="vr-content">
+                    <!-- Placeholder for VR content, can be embedded 3D objects, VR viewer, etc. -->
+                    <h3>Experience Virtual Reality Fitness</h3>
+                    <img src="images/vr-placeholder.jpg" alt="VR Experience" class="vr-image">
+                </div>
+            </div>
+
+            <!-- Button to start the voiceover guide -->
+            <div class="button-container">
+                <button onclick="startVoiceOver();">Voiceover Guide</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to play the voiceover and speak the message
+        function startVoiceOver() {
+            var text = "Hello, welcome to the fitness or lifting room! This is where we transform your fitness goals into reality. Whether you're looking to build strength, improve endurance, or simply get fit, you've come to the right place. In this room, you'll find various workout stations tailored to different fitness levels. From weight lifting, where you can work on your strength and power, to cardio stations designed to boost your stamina, there's something for everyone. Our team of trainers is here to help guide you, and with the power of virtual reality, you can immerse yourself in a full-body workout like never before. Stay focused, push yourself, and let’s reach your fitness potential together. Now, are you ready to get started and take your fitness journey to the next level? Let’s go!";
+
+            // Use SpeechSynthesis API for voiceover
+            var speech = new SpeechSynthesisUtterance(text);
+            speech.lang = "en-US"; // Language
+            speech.volume = 1; // Volume (0 to 1)
+            speech.rate = 1; // Rate (1 is normal speed)
+            speech.pitch = 1; // Pitch (1 is normal pitch)
+
+            // Speak the text
+            window.speechSynthesis.speak(speech);
+        }
+
+        // JavaScript to highlight the active page in the navbar
+        const currentLocation = window.location.pathname; // Get the current URL path
+        const navLinks = document.querySelectorAll('.nav-links a'); // Select all nav links
+
+        // Loop through all nav links and add an active class to the current page link
+        navLinks.forEach(link => {
+            if (link.href.includes(currentLocation)) {
+                link.classList.add('active'); // Add 'active' class if the link matches the current page
+            }
+        });
+
+        // Add event listener to toggle the active class when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                // Remove 'active' class from all links
+                navLinks.forEach(navLink => navLink.classList.remove('active'));
+                // Add 'active' class to the clicked link
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

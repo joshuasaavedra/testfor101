@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kalnia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <h1>S&S</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" id="home-link">Home</a></li>
+            <li><a href="journal.html" id="journal-link" class="active">Journal</a></li> <!-- 'active' class added here -->
+            <li><a href="vr.html" id="vr-link">VR Fitness</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main content -->
+    <div class="content">
+        <h2>Start Writing Your Fitness Journey with Your Voice</h2>
+
+        <!-- Fitness Journal Card -->
+        <div class="card">
+            <h3>FITNESS JOURNAL</h3>
+            <div id="voiceOutput">Your speech will appear here...</div>
+            <button id="startButton">Start Speaking</button>
+        </div>
+    </div>
+
+    <!-- Speech Recognition JS -->
+    <script>
+        // Check if the browser supports SpeechRecognition
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (!SpeechRecognition) {
+            alert("Your browser does not support Speech Recognition API");
+        }
+
+        const recognition = new SpeechRecognition();
+        recognition.lang = "en-US"; // Set language to English
+        recognition.interimResults = true; // Show interim results while speaking
+        recognition.maxAlternatives = 1; // Get only the most likely result
+
+        const voiceOutput = document.getElementById("voiceOutput");
+        const startButton = document.getElementById("startButton");
+
+        // Start recording voice
+        startButton.addEventListener("click", () => {
+            recognition.start();
+            voiceOutput.textContent = "Listening... Speak now!";
+            startButton.disabled = true; // Disable the button while recording
+        });
+
+        // When speech is recognized
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript; // Get the spoken text
+            voiceOutput.textContent = transcript; // Display the text on the page
+        };
+
+        // If speech recognition stops
+        recognition.onspeechend = () => {
+            voiceOutput.textContent += " (Speech recognition ended)";
+            
+            // Optional: Show a message after speech ends
+            setTimeout(() => {
+                voiceOutput.textContent = "Thank you for sharing your fitness journey!";
+            }, 1500); // Wait for 1.5 seconds before showing the message
+            
+            // Enable the button after a short delay
+            setTimeout(() => {
+                startButton.disabled = false;
+                voiceOutput.textContent = "Your speech will appear here..."; // Reset message
+            }, 3000); // Wait for 3 seconds to allow the user to see the thank you message
+        };
+
+        // If there is an error
+        recognition.onerror = (event) => {
+            voiceOutput.textContent = "Error: " + event.error;
+            startButton.disabled = false; // Re-enable the button in case of error
+        };
+    </script>
+
+    <script>
+        // JavaScript to highlight the active page in the navbar
+        const currentLocation = window.location.pathname; // Get the current URL path
+        const navLinks = document.querySelectorAll('.nav-links a'); // Select all nav links
+        
+        // Loop through all nav links and add an active class to the current page link
+        navLinks.forEach(link => {
+            if (link.href.includes(currentLocation)) {
+                link.classList.add('active'); // Add 'active' class if the link matches the current page
+            }
+        });
+    </script>
+</body>
+</html>
