@@ -7,22 +7,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Kalnia&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Additional styles to make the text visible */
         #savedOutput {
             margin-top: 20px;
             padding: 20px;
-            background-color: none;  /* Light gray background for contrast */
-            border: 1px solid #000000;     /* Light border for separation */
-            border-radius: 8px;         /* Rounded corners */
+            background-color: none; 
+            border: 1px solid #000000;   
+            border-radius: 8px;         
         }
 
         #savedText {
-            font-size: 16px;            /* Increase font size for better visibility */
-            color: #ffffff;                /* Dark text color */
-            line-height: 1.5;           /* Line spacing for better readability */
+            font-size: 16px;           
+            color: #ffffff;               
+            line-height: 1.5;           
         }
 
-        /* Optional styling to make the button and voice output stand out */
         #startButton {
             padding: 10px 20px;
             background-color: none;
@@ -40,43 +38,37 @@
         #voiceOutput {
             padding: 10px;
             margin-top: 10px;
-            background-color: none;  /* Light gray background for voice output */
+            background-color: none;
             border: 1px solid #000000;
             border-radius: 5px;
-            color: white; /* Set text color to black so it's visible against the background */
+            color: white;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation bar -->
     <nav class="navbar">
         <div class="logo-container">
             <h1>S & S</h1>
         </div>
         
-        <!-- Hamburger Icon for Mobile -->
         <div class="hamburger" id="hamburger-icon">
-            &#9776; <!-- This is the hamburger icon -->
+            &#9776;
         </div>
 
-        <!-- Nav links -->
         <ul class="nav-links" id="nav-links">
             <li><a href="index.html" id="home-link">Home</a></li>
-            <li><a href="journal.html" id="journal-link" class="active">Journal</a></li> <!-- 'active' class added here -->
+            <li><a href="journal.html" id="journal-link" class="active">Journal</a></li>
             <li><a href="vr.html" id="vr-link">VR Fitness</a></li>
         </ul>
     </nav>
 
-    <!-- Main content -->
     <div class="content">
         <h2>Start Writing Your Fitness Journey with Your Voice</h2>
 
-        <!-- Fitness Journal Card -->
         <div class="card">
             <h3>FITNESS JOURNAL</h3>
             <div id="voiceOutput">Your speech will appear here...</div>
             <button id="startButton">Start Speaking</button>
-            <!-- Display saved speech below -->
             <div id="savedOutput">
                 <strong>Saved Journal:</strong>
                 <p id="savedText">Your saved speech will appear here after you stop speaking.</p>
@@ -84,9 +76,7 @@
         </div>
     </div>
 
-    <!-- Speech Recognition JS -->
     <script>
-        // Check if the browser supports SpeechRecognition
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
         if (!SpeechRecognition) {
@@ -94,80 +84,68 @@
         }
 
         const recognition = new SpeechRecognition();
-        recognition.lang = "en-US"; // Set language to English
-        recognition.interimResults = true; // Show interim results while speaking
-        recognition.maxAlternatives = 1; // Get only the most likely result
+        recognition.lang = "en-US"; 
+        recognition.interimResults = true; 
+        recognition.maxAlternatives = 1; 
 
         const voiceOutput = document.getElementById("voiceOutput");
         const savedText = document.getElementById("savedText");
         const startButton = document.getElementById("startButton");
 
-        let finalTranscript = "";  // Variable to hold the final saved speech
+        let finalTranscript = "";  
 
-        // Start recording voice
         startButton.addEventListener("click", () => {
             recognition.start();
             voiceOutput.textContent = "Listening... Speak now!";
-            startButton.disabled = true; // Disable the button while recording
+            startButton.disabled = true; 
         });
 
-        // When speech is recognized (during speaking)
         recognition.onresult = (event) => {
-            let transcript = event.results[0][0].transcript; // Get the spoken text
+            let transcript = event.results[0][0].transcript;
 
-            // Show real-time results while speaking
             voiceOutput.textContent = transcript;
 
-            // If speech is final (no interim results), save it to the final transcript
             if (event.results[0].isFinal) {
                 finalTranscript = transcript;
             }
         };
 
-        // If speech recognition stops
         recognition.onspeechend = () => {
-            // Show a thank you message after speech ends
             setTimeout(() => {
                 voiceOutput.textContent = "Thank you for sharing your fitness journey!";
-            }, 1500); // Wait for 1.5 seconds before showing the message
+            }, 1500); 
             
-            // Display the saved final transcript below
             setTimeout(() => {
-                savedText.textContent = finalTranscript; // Save the final result here
-            }, 2000); // Delay the update to show the thank you message first
+                savedText.textContent = finalTranscript; 
+            }, 2000); 
             
-            // Enable the button after a short delay
             setTimeout(() => {
                 startButton.disabled = false;
-                voiceOutput.textContent = "Your speech will appear here..."; // Reset message
-            }, 3000); // Wait for 3 seconds to allow the user to see the thank you message
+                voiceOutput.textContent = "Your speech will appear here..."; 
+            }, 3000); 
         };
 
-        // If there is an error
         recognition.onerror = (event) => {
             voiceOutput.textContent = "Error: " + event.error;
-            startButton.disabled = false; // Re-enable the button in case of error
+            startButton.disabled = false; 
         };
     </script>
 
     <script>
-        // JavaScript to highlight the active page in the navbar
-        const currentLocation = window.location.pathname; // Get the current URL path
-        const navLinks = document.querySelectorAll('.nav-links a'); // Select all nav links
+        const currentLocation = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-links a');
         
-        // Loop through all nav links and add an active class to the current page link
         navLinks.forEach(link => {
             if (link.href.includes(currentLocation)) {
-                link.classList.add('active'); // Add 'active' class if the link matches the current page
+                link.classList.add('active');
             }
         });
 
-        // Toggle mobile menu when the hamburger icon is clicked
         const hamburgerIcon = document.getElementById("hamburger-icon");
         const navLinksContainer = document.getElementById("nav-links");
 
         hamburgerIcon.addEventListener("click", () => {
-            navLinksContainer.classList.toggle("active"); // Toggle visibility of the nav links
+            navLinksContainer.classList.toggle("active");
         });
     </script>
 </body>

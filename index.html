@@ -8,18 +8,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation bar -->
     <nav class="navbar">
         <div class="logo-container">
             <h1>S & S</h1>
         </div>
-        
-        <!-- Hamburger Icon for Mobile -->
         <div class="hamburger" id="hamburger-icon">
-            &#9776; <!-- This is the hamburger icon -->
+            &#9776;
         </div>
-
-        <!-- Nav links -->
         <ul class="nav-links" id="nav-links">
             <li><a href="index.html" id="home-link">Home</a></li>
             <li><a href="journal.html" id="journal-link">Journal</a></li>
@@ -27,21 +22,14 @@
         </ul>
     </nav>
 
-    <!-- Main content container -->
     <div class="content">
-        <!-- Glass Card -->
         <div class="card">
-            <!-- Main Title -->
             <div class="main-title">
                 <h2>S & S</h2>
             </div>
-
-            <!-- Semi Header -->
             <div class="semi-header">
                 <p>FITNESS NOTE</p>
             </div>
-
-            <!-- Button -->
             <div class="button-container">
                 <button onclick="window.location.href='journal.html';">JOURNAL</button>
             </div>
@@ -49,23 +37,20 @@
     </div>
 
     <script>
-        // JavaScript to highlight the active page in the navbar
-        const currentLocation = window.location.pathname; // Get the current URL path
-        const navLinks = document.querySelectorAll('.nav-links a'); // Select all nav links
+        const currentLocation = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-links a');
         
-        // Loop through all nav links and add an active class to the current page link
         navLinks.forEach(link => {
             if (link.href.includes(currentLocation)) {
-                link.classList.add('active'); // Add 'active' class if the link matches the current page
+                link.classList.add('active');
             }
         });
 
-        // Toggle mobile menu when the hamburger icon is clicked
         const hamburgerIcon = document.getElementById("hamburger-icon");
         const navLinksContainer = document.getElementById("nav-links");
 
         hamburgerIcon.addEventListener("click", () => {
-            navLinksContainer.classList.toggle("active"); // Toggle visibility of the nav links
+            navLinksContainer.classList.toggle("active");
         });
     </script>
 </body>
