@@ -43,6 +43,75 @@
             border-radius: 5px;
             color: white;
         }
+
+        /* Glasscard Styling */
+        .card {
+            background: rgba(0, 0, 0, 0.5); /* Dark transparent background */
+            border-radius: 15px; /* Rounded corners */
+            padding: 50px; /* Increase padding for more internal space */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* Shadow to enhance the effect */
+            color: white;
+            max-width: 600px; /* Increase max-width for larger card */
+            width: 100%; /* Ensure it takes up the full width within the max-width limit */
+            text-align: center;
+            margin: 50px 0; /* Adjust spacing to suit your design */
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Exclamation mark icon moved below the glasscard */
+        .exclamation {
+            font-size: 40px;
+            cursor: pointer;
+            color: white;
+            display: inline-block;
+            position: relative;
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+            margin-top: 30px; /* Space from the glasscard */
+        }
+
+        /* Tooltip effect for hover */
+        /* Exclamation mark icon */
+/* Exclamation mark icon */
+/* Exclamation mark icon */
+.exclamation {
+    font-size: 40px;
+    cursor: pointer;
+    color: black; /* Text color for the ? */
+    display: inline-block;
+    position: relative;
+    margin-top: 20px;
+    background-color: white; /* White background */
+    border-radius: 50%; /* Make it circular */
+    width: 50px; /* Set width */
+    height: 50px; /* Set height */
+    text-align: center; /* Center the text inside */
+    line-height: 50px; /* Center the text vertically */
+}
+
+/* Tooltip on hover */
+.exclamation:hover::after {
+    content: "Click the 'Start Speaking' button, and after you're done speaking, the transcribed text will be displayed below the button in the 'Saved Journal' section. To use this feature, make sure to open the page in a browser such as Google Chrome.";
+    position: absolute;
+    bottom: -35px; /* Adjust the position of the tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7); /* Dark background for tooltip */
+    color: white; /* White text for the tooltip */
+    padding: 8px 12px; /* Adjust padding for less space */
+    border-radius: 5px;
+    font-size: 12px; /* Smaller font size for better fit */
+    max-width: 300px; /* Limit the width of the tooltip */
+    text-align: left; /* Align text to the left */
+    word-wrap: break-word; /* Ensure long words break and don't overflow */
+    white-space: normal; /* Allow the text to wrap */
+}
+
+
+
+
     </style>
 </head>
 <body>
@@ -74,6 +143,9 @@
                 <p id="savedText">Your saved speech will appear here after you stop speaking.</p>
             </div>
         </div>
+
+        <!-- Move the "?" icon below the card -->
+        <span class="exclamation">?</span>
     </div>
 
     <script>

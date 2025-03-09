@@ -25,23 +25,35 @@
     <div class="content">
         <div class="card">
             <div class="header">
-                <h2>Take a virtual tour of the gym, try out different workouts, and see how we can help you achieve your fitness goals!</h2>
+                <h2>Take a virtual tour around the outside of the gym, explore the surrounding area, and see how we can help you achieve your fitness goals!</h2>
+
             </div>
             <div class="vr-section">
                 <div class="vr-content">
                     <h3>Experience Virtual Reality Fitness</h3>
-                    <img src="images/vr-placeholder.jpg" alt="VR Experience" class="vr-image">
                 </div>
             </div>
             <div class="button-container">
                 <button onclick="startVoiceOver();">Voiceover Guide</button>
+            </div>
+
+            <!-- Display VR Tour on the Page -->
+            <div class="vr-tour-container" id="vr-tour-container" style="display: none;">
+                <h3>Start Your Virtual Reality Tour</h3>
+                <!-- Embed the VR Tour via an iframe -->
+                <iframe id="vr-tour" src="https://www.360easyvr.com/vr/8184" width="100%" height="600" frameborder="0" allow="vr, accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <!-- Button to Toggle VR Tour Display -->
+            <div class="vr-button-container">
+                <button id="vr-toggle-button" onclick="toggleVRTour();">Show VR Tour</button>
             </div>
         </div>
     </div>
 
     <script>
         function startVoiceOver() {
-            var text = "Hello, welcome to the fitness or lifting room! This is where we transform your fitness goals into reality. Whether you're looking to build strength, improve endurance, or simply get fit, you've come to the right place. In this room, you'll find various workout stations tailored to different fitness levels. From weight lifting, where you can work on your strength and power, to cardio stations designed to boost your stamina, there's something for everyone. Our team of trainers is here to help guide you, and with the power of virtual reality, you can immerse yourself in a full-body workout like never before. Stay focused, push yourself, and let’s reach your fitness potential together. Now, are you ready to get started and take your fitness journey to the next level? Let’s go!";
+            var text = "Hello, welcome to the exterior of the gym! Take a look around the surrounding area and get a feel for the environment where we help you achieve your fitness goals. Whether you're looking to get in shape, improve your endurance, or build strength, the journey starts here. Our gym offers a variety of fitness programs to help you reach your potential. Explore the neighborhood and see how our fitness facilities and expert trainers can support you on your fitness journey. Let's take a look around and start your fitness transformation today!";
             var speech = new SpeechSynthesisUtterance(text);
             speech.lang = "en-US";
             speech.volume = 1;
@@ -72,6 +84,20 @@
         hamburgerIcon.addEventListener("click", () => {
             navLinksContainer.classList.toggle("active");
         });
+
+        // Function to toggle the visibility of the VR tour iframe and change button text
+        function toggleVRTour() {
+            const vrTourContainer = document.getElementById("vr-tour-container");
+            const vrToggleButton = document.getElementById("vr-toggle-button");
+
+            if (vrTourContainer.style.display === "none") {
+                vrTourContainer.style.display = "block";
+                vrToggleButton.textContent = "Minimize VR Tour"; // Change button text to "Minimize"
+            } else {
+                vrTourContainer.style.display = "none";
+                vrToggleButton.textContent = "Show VR Tour"; // Change button text to "Show"
+            }
+        }
     </script>
 </body>
 </html>
